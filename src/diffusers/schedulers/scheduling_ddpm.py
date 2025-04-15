@@ -63,7 +63,7 @@ def betas_for_alpha_bar(
         max_beta (`float`): the maximum beta to use; use values lower than 1 to
                      prevent singularities.
         alpha_transform_type (`str`, *optional*, default to `cosine`): the type of noise schedule for alpha_bar.
-                     Choose from `cosine` or `exp`
+                     Choose from `cosine`, `laplace` or `exp`
 
     Returns:
         betas (`np.ndarray`): the betas used by the scheduler to step the model outputs
@@ -149,7 +149,7 @@ class DDPMScheduler(SchedulerMixin, ConfigMixin):
             The final `beta` value.
         beta_schedule (`str`, defaults to `"linear"`):
             The beta schedule, a mapping from a beta range to a sequence of betas for stepping the model. Choose from
-            `linear`, `scaled_linear`, `squaredcos_cap_v2`, or `sigmoid`.
+            `linear`, `scaled_linear`, `squaredcos_cap_v2`, `laplace` or `sigmoid`.
         trained_betas (`np.ndarray`, *optional*):
             An array of betas to pass directly to the constructor without using `beta_start` and `beta_end`.
         variance_type (`str`, defaults to `"fixed_small"`):
